@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <NavBar />
 
-      <h2 style={{ marginTop: "80px" }}>PIZZA MENU</h2>
+      <h2 style={{ marginTop: "80px" }}>MENU</h2>
       <FirstComp />
     </div>
   );
