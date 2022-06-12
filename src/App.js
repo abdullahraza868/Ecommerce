@@ -1,15 +1,31 @@
 import "./App.css";
 import FirstComp from "./Components/FirstComp";
 import NavBar from "./Components/NavBar";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import CartDetails from "./Components/CartDetails";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <NavBar />
 
-      <h2 style={{ marginTop: "80px" }}>MENU</h2>
-      <FirstComp />
-    </div>
+      
+
+
+      <Routes>
+          <Route path="/" element = {<FirstComp />}/>
+          
+          <Route path="/cart" element= {<CartDetails/>}/>
+          
+          </Routes>
+          </div>  
+      </Router>
+    
   );
 }
 
