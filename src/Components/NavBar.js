@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Navbar, Nav, Container, Dropdown, Row, Col, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
@@ -6,8 +6,24 @@ import { useSelector } from "react-redux";
 
 const NavBar = (props) => {
 
-
   const fetchData = useSelector((state) => state.cartred.carts);
+  const [data, setData] = useState(fetchData)
+  const totalPrice = data.reduce((acc,item)=> acc + item.price,0)
+  const remove = (index) =>{
+    console.log(fetchData)
+    setData((fetchData) => fetchData.filter((item) => item.id !== index));
+
+    console.log(data)
+  }
+
+  
+  
+ useEffect(()=>{
+  setData(fetchData)
+ },[fetchData])
+
+ 
+  
   return (
     <div>
       <Navbar bg="dark" variant="dark">
@@ -34,28 +50,29 @@ const NavBar = (props) => {
                       <Col xs={12} md={8}><p><strong>Items Name</strong></p></Col>
                     </Row>
                     {
-                      fetchData.map((e) => {
+                      data.map((e) => {
                         return (
                           <>
                             <Row className="pb-5 pt-2 mb-2 shadow bg-body rounded" >
-                              <Col><NavLink href={`/cart`}><img width="100px" height="100px" src={e.imgsrc} /></NavLink></Col>
+                              <Col><NavLink href={`/cart/${e.id}`}><img width="100px" height="100px" src={e.imgsrc} /></NavLink></Col>
                               <Col>
                                 <Row>{e.title}</Row>
                                 <Row className="mt-3">Price: ${e.price}</Row>
-                                <Row className="mt-3">Quantity: { }</Row>
+                                <Row className="mt-3">Quantity: {e.quantity}</Row>
 
                               </Col>
-                              <Col xs lg="2"><img src="trash.svg" alt="trash" style={{ cursor: "pointer" }} /></Col>
+                              <Col xs lg="2"><button  onClick={()=> remove(e.id)}  style={{border: "none"}}><img src="trash.svg" alt="trash" style={{ cursor: "pointer" }} /></button></Col>
                             </Row>
                           </>
                         )
                       })
 
                     }
+               
                     <div style={{ paddingTop: "15px" }}>
-                      <h4 style={{ borderTop: "2px solid #D3D3D3" }} className="p-3">Total: ${ }</h4>
+                      <h4 style={{ borderTop: "2px solid #D3D3D3" }} className="p-3">Total: $ {totalPrice}</h4>
                     </div>
-
+                    
                   </Container> :
 
 

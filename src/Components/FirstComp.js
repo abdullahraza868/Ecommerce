@@ -8,57 +8,75 @@ const FirstComp = () => {
 
   const cards = [
     {
+      id : 1,
       title: "Chicken Fajita",
       imgsrc: "fajita.jpg",
-      price: "7"
+      price: 7,
+      quantity: 1
 
     },
     {
+      id : 2,
       title: "Chicken Tikka",
       imgsrc: "tikka.jpg",
-      price: "9"
+      price: 9,
+      quantity: 1
 
     },
     {
+      id : 3,
       title: "Cheese Lover",
       imgsrc: "cheese.jpg",
-      price: "11"
+      price: 11,
+      quantity: 1
 
     },
     {
+      id : 4,
       title: "Big Bang Burger",
       imgsrc: "bigbang.jpg",
-      price: "6"
+      price: 6,
+      quantity: 1
 
     },
     {
+      id : 5,
       title: "Ranchers Burger",
       imgsrc: "rancher.jpg",
-      price: "7"
+      price: 7,
+      quantity: 1
 
     },
     {
+      id : 6,
       title: "Stinger Burger",
       imgsrc: "stinger.jpg",
-      price: "9"
+      price: 9,
+      quantity: 1
 
     },
     {
+      id : 7,
       title: "BBQ Tikka",
       imgsrc: "tikkaboti.jpg",
-      price: "3 / 6pcs"
+      price: 3,
+      quantity: 1
 
     },
     {
+      id : 8,
       title: "Malai Boti",
       imgsrc: "malaiboti.jpg",
-      price: "4 / 6pcs"
+      price: 4,
+      quantity: 1
 
     },
     {
+      id : 9,
       title: "Chicken Kabab",
       imgsrc: "kabab.jpg",
-      price: "2 / 1pc"
+      price: 2,
+      quantity: 1
 
     },
 
@@ -67,6 +85,8 @@ const FirstComp = () => {
 
   const send = (e) => {
     dispatch(ADD(e));
+    
+    
   }
   return (
     <>
@@ -75,10 +95,10 @@ const FirstComp = () => {
         <div className="container">
           <div className="row my-4">
             {
-            cards.map((cards, index) => {
+            cards.map((cards, id) => {
               return (
 
-                <div key={index} className="col-md-4">
+                <div  key={id} className="col-md-4">
                   <Card style={{ height: "400px", marginTop: "50px" }}>
                     <Card.Img style={{ height: "250px" }} variant="top" src={cards.imgsrc} />
                     <Card.Body className="text-start">

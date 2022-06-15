@@ -20,7 +20,7 @@ function App() {
       <Routes>
           <Route path="/" element = {<FirstComp />}/>
           
-          <Route path="/cart" element= {<CartDetails/>}/>
+          <Route path="/cart/:id" element= {<CartDetails/>}/>
           
           </Routes>
           </div>  
