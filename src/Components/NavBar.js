@@ -1,35 +1,33 @@
-import React, {useEffect, useState} from "react";
-import { Navbar, Nav, Container, Dropdown, Row, Col, NavLink } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Navbar, Nav, Container, Dropdown, Row, Col, Badge } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
-import { ADD } from "../Redux/Action/action";
+import { Link } from 'react-router-dom'
 
 
 const NavBar = (props) => {
 
   const fetchData = useSelector((state) => state.cartred.carts);
   const [data, setData] = useState(fetchData)
-  const totalPrice = data.reduce((acc,item)=> acc + item.price,0)
-  const remove = (index) =>{
-    console.log(fetchData)
-    setData((fetchData) => fetchData.filter((item) => item.id !== index));
+  const totalPrice = data.reduce((acc, item) => acc + item.price, 0)
 
-    console.log(data)
+  const remove = (index) => {
+    setData((fetchData) => fetchData.filter((item) => item.id !== index));
   }
 
- useEffect(()=>{
-  setData(fetchData)
- },[fetchData])
+  useEffect(() => {
+    setData(fetchData)
+  }, [fetchData])
+  // console.log(data)
 
- 
-  
+
   return (
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Banera</Navbar.Brand>
+          <Navbar.Brand ><Link style={{ textDecoration: "none", color: "#fff" }} to="/">Banera</Link></Navbar.Brand>
           <Nav className="me-auto d-flex align-items-center">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Link style={{ textDecoration: "none", color: "#fff" }} to="/">Home</Link>
 
           </Nav>
         </Container>
@@ -37,41 +35,41 @@ const NavBar = (props) => {
         <Dropdown align="end">
           <div className="container">
             <Dropdown.Toggle variant="white" id="dropdown-basic">
-              <img src="cart.png" width="30" height="30" alt="cart logo" />{<span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-dark">{data.length}</span>}
+              <img src="cart.png" width="45vh" height="45vh" alt="cart logo"/><Badge pill bg="success">{data.length}</Badge>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu style={{ width: "400px", borderRadius: "10px" }}>
+            <Dropdown.Menu style={{width: "65vh", borderRadius: "10px", boxShadow: "0 3px 10px 3px rgb(0 0 0 / 0.2)" }}>
               {
                 data.length ?
-                  <Container className="p-3">
-                    <Row style={{ borderBottom: "2px solid black" }}>
-                      <Col><p><strong>Photo</strong></p></Col>
-                      <Col xs={12} md={8}><p><strong>Items Name</strong></p></Col>
+                  <Container style={{height: "70vh", width: "60vh" ,overflow: "auto", paddingTop: "2vh"}}>
+                    <Row style={{ borderBottom: "2px solid black", paddingBottom: "2vh" }}>
+                      <Col><strong style={{paddingLeft: "3vh"}}>Photo</strong></Col>
+                      <Col><strong>Items Name</strong></Col>
                     </Row>
                     {
                       data.map((e) => {
                         return (
                           <>
-                            <Row className="pb-5 pt-2 mb-2 shadow bg-body rounded" >
-                              <Col><NavLink href={`/cart/${e.id}`}><img width="100px" height="100px" src={e.imgsrc} /></NavLink></Col>
+                            <Row className="pb-5 pt-2 mb-2 shadow bg-body rounded">
+                              <Col><Link to={`/cart/${e.id}`}><img width="100px" height="100px" src={e.imgsrc} /></Link></Col>
                               <Col>
                                 <Row>{e.title}</Row>
                                 <Row className="mt-3">Price: ${e.price}</Row>
                                 <Row className="mt-3">Quantity: {e.quantity}</Row>
 
                               </Col>
-                              <Col xs lg="2"><button  onClick={()=> remove(e.id)}  style={{border: "none"}}><img src="trash.svg" alt="trash" style={{ cursor: "pointer" }} /></button></Col>
+                              <Col xs lg="2"><button onClick={() => remove(e.id)} style={{ border: "none", background: "none" }}><img src="trash.png" alt="trash" style={{ cursor: "pointer", height: "4vh", width: "3vh" }} /></button></Col>
                             </Row>
                           </>
                         )
                       })
 
                     }
-               
+
                     <div style={{ paddingTop: "15px" }}>
                       <h4 style={{ borderTop: "2px solid #D3D3D3" }} className="p-3">Total: $ {totalPrice}</h4>
                     </div>
-                    
+
                   </Container> :
 
 

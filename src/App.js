@@ -10,13 +10,10 @@ import CartDetails from "./Components/CartDetails";
 
 function App() {
   return (
-    <Router>
+    
       <div className="App">
       <NavBar />
-
       
-
-
       <Routes>
           <Route path="/" element = {<FirstComp />}/>
           
@@ -24,7 +21,7 @@ function App() {
           
           </Routes>
           </div>  
-      </Router>
+      
     
   );
 }
