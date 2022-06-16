@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Navbar, Nav, Container, Dropdown, Row, Col, NavLink } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
+import { ADD } from "../Redux/Action/action";
 
 
 const NavBar = (props) => {
@@ -16,8 +17,6 @@ const NavBar = (props) => {
     console.log(data)
   }
 
-  
-  
  useEffect(()=>{
   setData(fetchData)
  },[fetchData])
@@ -38,12 +37,12 @@ const NavBar = (props) => {
         <Dropdown align="end">
           <div className="container">
             <Dropdown.Toggle variant="white" id="dropdown-basic">
-              <img src="cart.png" width="30" height="30" alt="cart logo" />{<span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-dark">{fetchData.length}</span>}
+              <img src="cart.png" width="30" height="30" alt="cart logo" />{<span className="position-absolute top-0 start-90 translate-middle badge rounded-pill bg-dark">{data.length}</span>}
             </Dropdown.Toggle>
 
             <Dropdown.Menu style={{ width: "400px", borderRadius: "10px" }}>
               {
-                fetchData.length ?
+                data.length ?
                   <Container className="p-3">
                     <Row style={{ borderBottom: "2px solid black" }}>
                       <Col><p><strong>Photo</strong></p></Col>

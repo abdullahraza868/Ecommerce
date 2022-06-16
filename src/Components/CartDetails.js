@@ -28,13 +28,11 @@ export const CartDetails = () => {
     <div>
       <h3>Items Details In Cart</h3>
 
-
-
-      {
+      {/* {
         data.map((el) => {
     
           return (
-            
+             */}
             <Container className="container mt-3 mt-5 p-3 shadow p-3 mb-5 bg-body rounded">
               <Row md={4} className="cart-details align-items-center">
                 <Col className="img-container">
@@ -57,9 +55,9 @@ export const CartDetails = () => {
 
               </Row>
             </Container>
-          )
+          {/* )
         })
-      }
+      } */}
     
     </div >
   )

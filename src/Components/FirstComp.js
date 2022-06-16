@@ -85,9 +85,9 @@ const FirstComp = () => {
 
   const send = (e) => {
     dispatch(ADD(e));
-    
-    
   }
+
+  
   return (
     <>
       <div>
